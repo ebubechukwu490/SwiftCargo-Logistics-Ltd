@@ -61,7 +61,7 @@ export default function TruckAnimationSection() {
         <SectionHeading
           eyebrow="On the Move"
           title="Swift Cargo, Nationwide Delivery"
-          subtitle="Watch us bridge the gap across Nigerian cities. As you scroll, our fleet delivers to your destination."
+          subtitle="Watch us bridge the gap across Nigerian cities."
           align="center"
           light={true}
         />
