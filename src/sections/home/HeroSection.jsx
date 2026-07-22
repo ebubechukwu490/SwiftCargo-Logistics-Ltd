@@ -27,8 +27,14 @@ export default function HeroSection() {
             </div>
             <div className="hero__areas">
               <span>Serving:</span>
-              {COMPANY_INFO.serviceAreas.map((area) => (
-                <span key={area} className="hero__area-tag">{area}</span>
+              {COMPANY_INFO.serviceAreas.map((area, index) => (
+                <span 
+                  key={area} 
+                  className="hero__area-tag"
+                  style={{ animationDelay: `${index * 0.2}s` }}
+                >
+                  {area}
+                </span>
               ))}
             </div>
           </div>
