@@ -3,16 +3,13 @@ import Container from '@/components/layout/Container';
 import Button from '@/components/buttons/Button';
 import ImagePlaceholder from '@/components/common/ImagePlaceholder';
 import { COMPANY_INFO } from '@/constants/companyInfo';
-import { useScrollReveal } from '@/hooks/useScrollReveal';
 import './HeroSection.css';
 export default function HeroSection() {
-  const { ref, isRevealed } = useScrollReveal();
-
   return (
     <section className="hero">
       <Container>
-        <div className={`hero__grid ${isRevealed ? 'revealed' : ''}`} ref={ref}>
-          <div className="hero__content reveal">
+        <div className="hero__grid">
+          <div className="hero__content">
             <span className="hero__eyebrow">Established {COMPANY_INFO.founded}</span>
             <h1 className="hero__title">
               Reliable Logistics Across Nigeria
