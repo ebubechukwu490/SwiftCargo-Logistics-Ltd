@@ -1,7 +1,7 @@
 import Container from '@/components/layout/Container';
 import SectionHeading from '@/components/common/SectionHeading';
-import ImagePlaceholder from '@/components/common/ImagePlaceholder';
 import { COMPANY_INFO } from '@/constants/companyInfo';
+import teamFleetImage from '@/assets/team-fleet.jpg';
 import './CompanyStory.css';
 
 export default function CompanyStory() {
@@ -10,7 +10,7 @@ export default function CompanyStory() {
       <Container>
         <div className="company-story__grid">
           <div className="company-story__image">
-            <ImagePlaceholder label="SwiftCargo team and fleet, awaiting client photography" aspectRatio="4/3" rounded />
+            <img src={teamFleetImage} alt="SwiftCargo team and fleet" className="company-story__img" />
           </div>
           <div className="company-story__content">
             <SectionHeading eyebrow="Our Story" title="From Referrals to a Regional Logistics Partner" />

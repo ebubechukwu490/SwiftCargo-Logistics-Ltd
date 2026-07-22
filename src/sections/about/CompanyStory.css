@@ -5,6 +5,15 @@
   align-items: center;
 }
 
+.company-story__img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+
 .company-story__content p {
   color: var(--color-gray-600);
   line-height: var(--line-height-relaxed);
