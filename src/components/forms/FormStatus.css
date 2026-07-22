@@ -1,0 +1,36 @@
+.form-status {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-lg);
+  border-radius: var(--radius-md);
+  font-size: var(--text-body-sm);
+}
+
+.form-status--success {
+  background-color: var(--color-success-light);
+  color: var(--color-success);
+  border: 1px solid rgba(46, 125, 50, 0.2);
+}
+
+.form-status--error {
+  background-color: var(--color-error-light);
+  color: var(--color-error);
+  border: 1px solid rgba(198, 40, 40, 0.2);
+}
+
+.form-status--loading {
+  background-color: var(--color-info-light);
+  color: var(--color-info);
+  border: 1px solid rgba(21, 101, 192, 0.2);
+}
+
+.form-status__icon {
+  font-weight: var(--font-weight-bold);
+  flex-shrink: 0;
+}
+
+.form-status__message {
+  margin: 0;
+  line-height: var(--line-height-normal);
+}

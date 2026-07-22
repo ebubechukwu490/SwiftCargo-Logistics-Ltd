@@ -1,0 +1,6 @@
+.form-textarea {
+  height: auto;
+  min-height: 120px;
+  padding: var(--space-md);
+  resize: vertical;
+}

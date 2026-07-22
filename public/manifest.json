@@ -1,0 +1,12 @@
+{
+  "name": "SwiftCargo Logistics Ltd",
+  "short_name": "SwiftCargo",
+  "description": "Reliable interstate cargo transport, warehousing, and last-mile delivery across Lagos, Ibadan, and Abuja.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0B2545",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

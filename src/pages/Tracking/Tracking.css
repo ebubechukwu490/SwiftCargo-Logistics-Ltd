@@ -1,0 +1,4 @@
+.tracking-page__error {
+  max-width: 480px;
+  margin: var(--space-lg) auto 0;
+}

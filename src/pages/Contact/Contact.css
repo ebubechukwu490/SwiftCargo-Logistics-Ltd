@@ -1,0 +1,16 @@
+.contact-page__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-3xl);
+}
+
+.contact-page__heading {
+  font-size: var(--text-h4);
+  color: var(--color-primary);
+  margin-bottom: var(--space-lg);
+}
+
+@media (max-width: 1023px) {
+  .contact-page__grid { grid-template-columns: 1fr; gap: var(--space-2xl); }
+}

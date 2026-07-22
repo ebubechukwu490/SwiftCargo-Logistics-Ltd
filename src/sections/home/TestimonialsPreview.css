@@ -1,0 +1,163 @@
+.testimonials-preview {
+  padding-block: var(--space-3xl);
+  overflow: hidden;
+}
+
+.testimonials-preview__slider-container {
+  overflow: hidden;
+  width: 100vw;
+  margin-top: var(--space-3xl);
+  position: relative;
+  /* Left and right fade overlay */
+  mask-image: linear-gradient(to right, transparent, #000 8% 92%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8% 92%, transparent);
+}
+
+.testimonials-preview__slider-track {
+  display: flex;
+  align-items: stretch; /* Stretch cards to have uniform height */
+  width: 125vw; /* 5 cards total. Each is 25vw, so 5 * 25vw = 125vw */
+  transform: translateX(calc(var(--scroll-progress) * -25vw)); /* Translate last 1 card (circle) into view */
+  will-change: transform;
+}
+
+.testimonials-preview__card-wrapper {
+  width: 25vw; /* Exactly 4 cards in 100vw */
+  padding: var(--space-md);
+  box-sizing: border-box;
+}
+
+/* Card hover animation */
+.testimonials-preview__card-wrapper .testimonial-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 100%;
+}
+
+.testimonials-preview__card-wrapper:hover .testimonial-card {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* See More Wrapper centering */
+.testimonials-preview__see-more-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* See More Circular Button */
+.testimonials-preview__see-more-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-dark) 100%);
+  color: var(--color-white);
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.see-more-circle__text {
+  font-size: var(--text-body-sm);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: 6px;
+  color: var(--color-white);
+}
+
+.see-more-circle__arrow {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effects for the circle */
+.testimonials-preview__see-more-circle:hover {
+  transform: scale(1.08);
+  box-shadow: var(--shadow-lg);
+}
+
+.testimonials-preview__see-more-circle:hover .see-more-circle__arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   Mobile Optimization: 4 cards in view, complete testimonial text
+   ============================================================ */
+@media (max-width: 767px) {
+  .testimonials-preview {
+    padding-block: var(--space-xl);
+  }
+
+  .testimonials-preview__slider-container {
+    margin-top: var(--space-xl);
+  }
+
+  .testimonials-preview__card-wrapper {
+    padding: 6px; /* Narrow gaps on mobile */
+  }
+
+  /* Compact Testimonial Card Styling for 25vw Mobile View */
+  .testimonials-preview__card-wrapper .testimonial-card {
+    padding: var(--space-xs) 6px;
+    border-radius: var(--radius-md);
+  }
+
+  .testimonials-preview__card-wrapper .testimonial-card__rating {
+    margin-bottom: 2px;
+    gap: 1px;
+  }
+
+  .testimonials-preview__card-wrapper .testimonial-card__rating svg {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* Show complete testimonial quotes (remove line clamping) */
+  .testimonials-preview__card-wrapper .testimonial-card__quote {
+    font-size: 0.62rem;
+    line-height: 1.15;
+    margin-bottom: var(--space-xs);
+    display: block;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    text-overflow: clip;
+  }
+
+  .testimonials-preview__card-wrapper .testimonial-card__author {
+    padding-top: var(--space-xs);
+  }
+
+  .testimonials-preview__card-wrapper .testimonial-card__name {
+    font-size: 0.58rem;
+    line-height: 1.1;
+  }
+
+  .testimonials-preview__card-wrapper .testimonial-card__role {
+    font-size: 0.48rem;
+    line-height: 1.1;
+    margin-top: 1px;
+  }
+
+  /* Circular See More Button for Mobile */
+  .testimonials-preview__see-more-circle {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+  }
+
+  .see-more-circle__text {
+    font-size: 0.55rem;
+    margin-bottom: 2px;
+  }
+
+  .see-more-circle__arrow {
+    width: 12px;
+    height: 12px;
+  }
+}

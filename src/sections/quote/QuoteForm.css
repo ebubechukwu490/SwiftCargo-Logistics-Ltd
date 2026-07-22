@@ -1,0 +1,51 @@
+.quote-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+@media (max-width: 599px) {
+  .quote-form__row { grid-template-columns: 1fr; }
+}
+
+.quote-form__error {
+  color: var(--color-error);
+  font-size: var(--text-body-sm);
+  margin-bottom: var(--space-md);
+}
+
+.quote-form__success {
+  text-align: center;
+  padding: var(--space-3xl) var(--space-lg);
+}
+
+.quote-form__success-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-full);
+  background: var(--color-success-light);
+  color: var(--color-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-lg);
+}
+
+.quote-form__success-icon svg { width: 28px; height: 28px; }
+
+.quote-form__success h3 {
+  font-size: var(--text-h3);
+  color: var(--color-primary);
+  margin-bottom: var(--space-sm);
+}
+
+.quote-form__success p {
+  color: var(--color-gray-600);
+  margin-bottom: var(--space-sm);
+}
+
+.quote-form__tracking {
+  font-size: var(--text-body-lg);
+  color: var(--color-primary);
+  margin-bottom: var(--space-xl) !important;
+}

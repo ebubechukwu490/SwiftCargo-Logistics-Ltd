@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%" fill="none">
+  <!-- Defs / Gradients -->
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F8F9FA" />
+      <stop offset="100%" stop-color="#E9ECEF" />
+    </linearGradient>
+    <linearGradient id="primaryGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#133B6B" />
+      <stop offset="100%" stop-color="#0B2545" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F39C12" />
+      <stop offset="100%" stop-color="#E67E22" />
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#0B2545" flood-opacity="0.08" />
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="500" rx="12" fill="url(#bgGrad)" />
+
+  <!-- Abstract connections / Isometric lines -->
+  <g opacity="0.3">
+    <path d="M-100 250 L900 250" stroke="#DEE2E6" stroke-width="1" />
+    <path d="M400 -50 L400 550" stroke="#DEE2E6" stroke-width="1" />
+    <path d="M 0,100 L 800,500" stroke="#DEE2E6" stroke-width="1.5" />
+    <path d="M 0,200 L 800,600" stroke="#DEE2E6" stroke-width="1.5" />
+    <path d="M 0,0 L 800,400" stroke="#DEE2E6" stroke-width="1.5" />
+    <path d="M 0,400 L 800,0" stroke="#DEE2E6" stroke-width="1.5" />
+    <path d="M 0,500 L 800,100" stroke="#DEE2E6" stroke-width="1.5" />
+    <path d="M 0,300 L 800,-100" stroke="#DEE2E6" stroke-width="1.5" />
+  </g>
+
+  <!-- Central Hub - Custom Solutions Control -->
+  <g transform="translate(400, 260)" filter="url(#dropShadow)">
+    <!-- Base Platform -->
+    <ellipse cx="0" cy="40" rx="90" ry="45" fill="#DEE2E6" />
+    <ellipse cx="0" cy="35" rx="90" ry="45" fill="url(#primaryGrad)" />
+    <ellipse cx="0" cy="30" rx="80" ry="40" fill="#1A4A80" />
+    
+    <!-- Outer light rings -->
+    <ellipse cx="0" cy="30" rx="110" ry="55" stroke="#E67E22" stroke-width="2" stroke-dasharray="10 15" opacity="0.5" />
+    
+    <!-- Vertical Glow Core -->
+    <path d="M -20,10 L 0,-40 L 20,10 L 10,30 L -10,30 Z" fill="url(#accentGrad)" opacity="0.8" />
+    
+    <!-- Floating Dashboard Card (Analytics) -->
+    <g transform="translate(-45, -60)">
+      <path d="M 0,-10 L 45,-25 L 90,-10 L 90,40 L 45,55 L 0,40 Z" fill="#FFFFFF" />
+      <path d="M 15,10 L 30,5 L 30,25 L 15,30 Z" fill="#0B2545" />
+      <path d="M 35,2 L 50,-3 L 50,17 L 35,22 Z" fill="#E67E22" />
+      <path d="M 55,7 L 70,2 L 70,22 L 55,27 Z" fill="#0B2545" />
+    </g>
+  </g>
+
+  <!-- Network Connection Paths to Sub-Nodes -->
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 310,285 L 200,240 L 160,160" stroke="#0B2545" stroke-width="3" />
+    <path d="M 310,285 L 200,240 L 160,160" stroke="#E67E22" stroke-width="3" stroke-dasharray="15 45" />
+    
+    <path d="M 400,215 L 400,100" stroke="#0B2545" stroke-width="3" />
+    <path d="M 400,215 L 400,100" stroke="#E67E22" stroke-width="3" stroke-dasharray="20 40" />
+
+    <path d="M 490,285 L 600,240 L 640,160" stroke="#0B2545" stroke-width="3" />
+    <path d="M 490,285 L 600,240 L 640,160" stroke="#E67E22" stroke-width="3" stroke-dasharray="15 45" />
+  </g>
+
+  <!-- Left Node: Land Transport Integration -->
+  <g transform="translate(160, 150)" filter="url(#dropShadow)">
+    <circle cx="0" cy="0" r="30" fill="url(#primaryGrad)" />
+    <circle cx="0" cy="0" r="30" stroke="#FFFFFF" stroke-width="2" />
+    <!-- Mini Truck Icon inside circle -->
+    <path d="M -15,5 L -15,-5 L -2,-5 L 3,-1 L 10,-1 L 10,5 Z" fill="#FFFFFF" />
+    <path d="M -15,5 L -15,0 L -5,0 L -5,5 Z" fill="#E67E22" />
+    <circle cx="-10" cy="7" r="2.5" fill="#FFFFFF" />
+    <circle cx="5" cy="7" r="2.5" fill="#FFFFFF" />
+    <circle cx="0" cy="-35" r="4" fill="#E67E22" />
+  </g>
+
+  <!-- Top Node: Air Priority Routing -->
+  <g transform="translate(400, 90)" filter="url(#dropShadow)">
+    <circle cx="0" cy="0" r="30" fill="url(#primaryGrad)" />
+    <circle cx="0" cy="0" r="30" stroke="#FFFFFF" stroke-width="2" />
+    <!-- Mini Airplane Icon inside circle -->
+    <path d="M 0,-15 L 3,-6 L 15,0 L 3,2 L 0,12 L -2,2 L -14,0 L -2,-6 Z" fill="#FFFFFF" />
+    <circle cx="0" cy="-35" r="4" fill="#E67E22" />
+  </g>
+
+  <!-- Right Node: Custom Warehousing -->
+  <g transform="translate(640, 150)" filter="url(#dropShadow)">
+    <circle cx="0" cy="0" r="30" fill="url(#primaryGrad)" />
+    <circle cx="0" cy="0" r="30" stroke="#FFFFFF" stroke-width="2" />
+    <!-- Mini Box/Pallet Icon -->
+    <path d="M -10,-10 L 0,-15 L 10,-10 L 10,5 L 0,10 L -10,5 Z" fill="#FFFFFF" />
+    <path d="M -10,-10 L 0,-5 L 10,-10" stroke="#0B2545" stroke-width="1" />
+    <path d="M 0,-5 L 0,10" stroke="#0B2545" stroke-width="1" />
+    <circle cx="0" cy="-35" r="4" fill="#E67E22" />
+  </g>
+
+  <!-- Data Graphs overlay -->
+  <g transform="translate(80, 360)" filter="url(#dropShadow)">
+    <path d="M 0,-10 L 35,-20 L 70,-10 L 70,30 L 35,40 L 0,30 Z" fill="#FFFFFF" />
+    <path d="M 10,15 L 25,5 L 40,20 L 55,8" stroke="#E67E22" stroke-width="2" stroke-linecap="round" fill="none" />
+  </g>
+  
+  <g transform="translate(640, 360)" filter="url(#dropShadow)">
+    <path d="M 0,-10 L 35,-20 L 70,-10 L 70,30 L 35,40 L 0,30 Z" fill="#FFFFFF" />
+    <path d="M 20,10 L 27,17 L 45,2" stroke="#0B2545" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
+</svg>

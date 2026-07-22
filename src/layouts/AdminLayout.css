@@ -1,0 +1,22 @@
+.admin-layout {
+  min-height: 100vh;
+  background: var(--color-gray-50);
+}
+
+.admin-layout__main {
+  margin-left: 260px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-layout__content {
+  padding: var(--space-xl);
+  flex: 1;
+}
+
+@media (max-width: 1023px) {
+  .admin-layout__main {
+    margin-left: 0;
+  }
+}
