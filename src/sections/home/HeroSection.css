@@ -82,11 +82,36 @@
 
 
 @media (max-width: 767px) {
+  .hero {
+    min-height: 100vh;
+    padding-block: 120px var(--space-section);
+  }
+
+  .hero__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero__title {
+    font-size: var(--text-h2);
+    max-width: 100%;
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-body);
+    max-width: 100%;
+  }
+
   .hero__actions {
     flex-direction: column;
   }
 
   .hero__actions .btn {
     width: 100%;
+  }
+
+  .hero__areas {
+    flex-direction: column;
+    gap: var(--space-xs);
   }
 }
