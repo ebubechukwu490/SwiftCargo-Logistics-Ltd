@@ -9,8 +9,15 @@
 @import './reset.css';
 @import './animations.css';
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 #root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+  max-width: 100%;
 }

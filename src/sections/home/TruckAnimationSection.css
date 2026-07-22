@@ -3,6 +3,8 @@
   background: linear-gradient(180deg, #071A30 0%, #0B2545 100%);
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 100%;
 }
 
 .truck-animation__landscape {
