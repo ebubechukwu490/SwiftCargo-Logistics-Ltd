@@ -84,34 +84,55 @@
 @media (max-width: 767px) {
   .hero {
     min-height: 100vh;
-    padding-block: 120px var(--space-section);
+    padding-block: 100px var(--space-section);
   }
 
   .hero__content {
     position: relative;
     z-index: 2;
+    padding: 0 var(--space-md);
+  }
+
+  .hero__eyebrow {
+    font-size: var(--text-body-xs);
+    margin-bottom: var(--space-sm);
   }
 
   .hero__title {
-    font-size: var(--text-h2);
+    font-size: 1.75rem;
+    line-height: 1.2;
     max-width: 100%;
+    margin-bottom: var(--space-md);
   }
 
   .hero__subtitle {
-    font-size: var(--text-body);
+    font-size: var(--text-body-sm);
+    line-height: 1.6;
     max-width: 100%;
+    margin-bottom: var(--space-lg);
   }
 
   .hero__actions {
     flex-direction: column;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
   }
 
   .hero__actions .btn {
     width: 100%;
+    padding: 14px 24px;
   }
 
   .hero__areas {
-    flex-direction: column;
-    gap: var(--space-xs);
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-sm);
+    font-size: var(--text-body-xs);
+  }
+
+  .hero__area-tag {
+    padding: 4px var(--space-sm);
+    font-size: var(--text-body-xs);
   }
 }
