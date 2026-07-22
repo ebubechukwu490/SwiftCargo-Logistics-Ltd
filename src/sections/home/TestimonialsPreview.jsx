@@ -8,57 +8,62 @@ import './TestimonialsPreview.css';
 
 export default function TestimonialsPreview() {
   const testimonials = TESTIMONIALS.slice(0, 4);
-  const sectionRef = useRef(null);
-  const [progress, setProgress] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const sliderRef = useRef(null);
+  const autoPlayRef = useRef(null);
 
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+  };
+
+  // Auto-play functionality
   useEffect(() => {
-    const element = sectionRef.current;
-    if (!element) return;
-
-    let isIntersecting = false;
-    let frameId = null;
-
-    const handleScroll = () => {
-      if (!isIntersecting) return;
-      const rect = element.getBoundingClientRect();
-      const start = window.innerHeight * 0.35; // Animation begins late (when heading reaches 35% viewport height)
-      const end = 0; // Animation completes when heading reaches the top (0)
-      const total = start - end;
-      const current = start - rect.top;
-      const p = Math.max(0, Math.min(1, current / total));
-      setProgress(p);
-    };
-
-    const onScroll = () => {
-      if (frameId) cancelAnimationFrame(frameId);
-      frameId = requestAnimationFrame(handleScroll);
-    };
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isIntersecting = entry.isIntersecting;
-        if (isIntersecting) {
-          window.addEventListener('scroll', onScroll, { passive: true });
-          handleScroll();
-        } else {
-          window.removeEventListener('scroll', onScroll);
-          if (frameId) cancelAnimationFrame(frameId);
-        }
-      },
-      { threshold: 0 }
-    );
-
-    observer.observe(element);
-
+    if (isAutoPlaying) {
+      autoPlayRef.current = setInterval(nextSlide, 5000);
+    }
     return () => {
-      observer.disconnect();
-      window.removeEventListener('scroll', onScroll);
-      if (frameId) cancelAnimationFrame(frameId);
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
     };
-  }, []);
+  }, [isAutoPlaying]);
+
+  // Pause auto-play on user interaction
+  const handleInteraction = () => {
+    setIsAutoPlaying(false);
+    setTimeout(() => setIsAutoPlaying(true), 10000);
+  };
+
+  // Touch swipe support
+  const touchStartRef = useRef(0);
+  const handleTouchStart = (e) => {
+    touchStartRef.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    const touchEnd = e.changedTouches[0].clientX;
+    const diff = touchStartRef.current - touchEnd;
+    if (Math.abs(diff) > 50) {
+      handleInteraction();
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+    }
+  };
 
   return (
-    <section className="section testimonials-preview section--gray" ref={sectionRef}>
+    <section className="section testimonials-preview section--gray">
       <Container>
         <SectionHeading
           eyebrow="Client Feedback"
@@ -66,27 +71,64 @@ export default function TestimonialsPreview() {
           align="center"
         />
       </Container>
-      
+
       <div 
-        className="testimonials-preview__slider-container"
-        style={{ '--scroll-progress': `${progress}` }}
+        className="testimonials-preview__carousel"
+        ref={sliderRef}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
       >
-        <div className="testimonials-preview__slider-track">
-          {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="testimonials-preview__card-wrapper">
+        <div className="testimonials-preview__track">
+          {testimonials.map((testimonial, index) => (
+            <div 
+              key={testimonial.id} 
+              className={`testimonials-preview__slide ${index === currentIndex ? 'testimonials-preview__slide--active' : ''}`}
+            >
               <TestimonialCard testimonial={testimonial} />
             </div>
           ))}
-          
-          {/* The 5th slot - Circular See More button */}
-          <div className="testimonials-preview__card-wrapper testimonials-preview__see-more-wrapper">
-            <Link to="/testimonials" className="testimonials-preview__see-more-circle">
-              <span className="see-more-circle__text">See More</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="see-more-circle__arrow">
-                <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </Link>
-          </div>
+        </div>
+
+        {/* Navigation Arrows */}
+        <button 
+          className="testimonials-preview__nav testimonials-preview__nav--prev"
+          onClick={() => { prevSlide(); handleInteraction(); }}
+          aria-label="Previous testimonial"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        <button 
+          className="testimonials-preview__nav testimonials-preview__nav--next"
+          onClick={() => { nextSlide(); handleInteraction(); }}
+          aria-label="Next testimonial"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M9 18l6-6-6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        {/* Progress Indicators */}
+        <div className="testimonials-preview__indicators">
+          {testimonials.map((_, index) => (
+            <button
+              key={index}
+              className={`testimonials-preview__indicator ${index === currentIndex ? 'testimonials-preview__indicator--active' : ''}`}
+              onClick={() => { goToSlide(index); handleInteraction(); }}
+              aria-label={`Go to testimonial ${index + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* See More Button */}
+        <div className="testimonials-preview__see-more">
+          <Link to="/testimonials" className="testimonials-preview__see-more-btn">
+            View All Testimonials
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>
