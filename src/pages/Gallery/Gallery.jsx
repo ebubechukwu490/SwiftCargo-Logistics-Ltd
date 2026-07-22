@@ -123,38 +123,19 @@ export default function Gallery() {
               <article 
                 key={item.id} 
                 className="gallery-item"
-                style={{
-                  border: '1px solid var(--color-gray-200)',
-                  borderRadius: 'var(--radius-lg)',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  backgroundColor: 'var(--color-white)',
-                  transition: 'transform 0.3s ease, box-shadow 0.3s ease'
-                }}
                 onClick={() => setActiveItem(item)}
               >
-                <div style={{ position: 'relative', overflow: 'hidden' }}>
+                <div className="gallery-item__image-wrapper">
                   <ResponsiveImage src={item.src} alt={item.title} aspectRatio="16/10" />
-                  <span 
-                    style={{
-                      position: 'absolute',
-                      top: 'var(--space-sm)',
-                      left: 'var(--space-sm)',
-                      backgroundColor: 'var(--color-primary)',
-                      color: 'var(--color-white)',
-                      fontSize: 'var(--text-caption)',
-                      padding: '4px var(--space-sm)',
-                      borderRadius: 'var(--radius-full)'
-                    }}
-                  >
+                  <span className="gallery-item__category">
                     {item.category}
                   </span>
                 </div>
-                <div style={{ padding: 'var(--space-md)' }}>
-                  <h3 className="font-semibold" style={{ fontSize: 'var(--text-body)', color: 'var(--color-gray-900)' }}>
+                <div className="gallery-item__content">
+                  <h3 className="gallery-item__title">
                     {item.title}
                   </h3>
-                  <p style={{ fontSize: 'var(--text-body-sm)', color: 'var(--color-gray-600)', marginTop: '4px' }}>
+                  <p className="gallery-item__description">
                     {item.description}
                   </p>
                 </div>
