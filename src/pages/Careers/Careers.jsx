@@ -54,12 +54,10 @@ export default function Careers() {
       return;
     }
 
-    setIsSubmitting(true);
-    // Mock API submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitSuccess(true);
-    }, 1200);
+    // TODO: Backend developer:
+    // Connect this function to the appropriate API endpoint.
+    // Replace the temporary placeholder message with the actual server response.
+    alert('Backend integration pending. This feature has been fully prepared on the frontend and will become functional once the backend services are connected.');
   };
 
   return (

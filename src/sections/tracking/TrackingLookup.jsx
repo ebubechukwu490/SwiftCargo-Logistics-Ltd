@@ -37,7 +37,6 @@ export default function TrackingLookup({ onResult }) {
         value={trackingId}
         onChange={(_, val) => setTrackingId(val)}
         error={error}
-        hint="Try sample IDs: SWC-2026-00142 or SWC-2026-00089"
       />
       <Button type="submit" variant="primary" fullWidth loading={loading}>Track Shipment</Button>
     </form>

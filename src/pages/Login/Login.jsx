@@ -45,7 +45,7 @@ export default function Login() {
       login(result.user);
       navigate('/admin/dashboard', { replace: true });
     } catch (err) {
-      setError(VALIDATION_MESSAGES.sessionExpired === err.message ? err.message : 'Invalid email or password.');
+      setError(err.message);
     } finally {
       setLoading(false);
     }
@@ -71,7 +71,7 @@ export default function Login() {
             <Button type="submit" variant="primary" fullWidth loading={loading}>Log In</Button>
             {error && <FormStatus type="error" message={error} />}
           </form>
-          <p className="login-page__hint">Demo access: any email and password will sign you in to the UI-only dashboard.</p>
+          <p className="login-page__hint">Backend integration pending. This feature has been fully prepared on the frontend and will become functional once the backend services are connected.</p>
         </div>
       </Container>
     </div>
