@@ -46,9 +46,9 @@ export default function AppRoutes() {
             <Route path="terms" element={<Terms />} />
           </Route>
 
-          <Route path="admin/login" element={<Login />} />
-          <Route element={<AdminLayout />}>
-            <Route path="admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/login" element={<Login />} />
+          <Route path="/admin/dashboard" element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
