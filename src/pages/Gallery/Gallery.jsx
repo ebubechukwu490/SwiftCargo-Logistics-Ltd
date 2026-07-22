@@ -8,10 +8,9 @@ import cleanWarehouseBg from '@/assets/clean_warehouse_bg.webp';
 import fleetOperationsHero from '@/assets/fleet_operations_hero.webp';
 import interstateCargoTransport from '@/assets/interstate_cargo_transport.webp';
 import warehousingStorage from '@/assets/warehousing_storage.webp';
-import logoPng from '@/assets/logo.png';
 import './Gallery.css';
 
-const CATEGORIES = ['All', 'Fleet & Transport', 'Warehousing', 'Corporate'];
+const CATEGORIES = ['All', 'Fleet & Transport', 'Warehousing'];
 
 const GALLERY_ITEMS = [
   {
@@ -48,13 +47,6 @@ const GALLERY_ITEMS = [
     title: 'Haulage Fleet Operations',
     category: 'Fleet & Transport',
     description: 'Heavy duty trailers parked at our main terminal ready for dispatch.'
-  },
-  {
-    id: 6,
-    src: logoPng,
-    title: 'SwiftCargo Logistics Branding',
-    category: 'Corporate',
-    description: "Corporate logo representation of Nigeria's swift delivery partner."
   }
 ];
 
