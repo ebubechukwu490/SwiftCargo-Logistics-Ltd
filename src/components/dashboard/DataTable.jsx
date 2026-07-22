@@ -28,6 +28,14 @@ export default function DataTable({ columns, data, loading, emptyMessage = 'No r
     return <EmptyState title="Nothing here yet" description={emptyMessage} />;
   }
 
+  const defaultRenderRow = (row) => (
+    <tr key={row.id}>
+      {columns.map((col) => (
+        <td key={col.key}>{row[col.key]}</td>
+      ))}
+    </tr>
+  );
+
   return (
     <div className="data-table-wrapper">
       <table className="data-table">
@@ -35,7 +43,7 @@ export default function DataTable({ columns, data, loading, emptyMessage = 'No r
           <tr>{columns.map((col) => <th key={col.key}>{col.label}</th>)}</tr>
         </thead>
         <tbody>
-          {data.map((row) => renderRow(row))}
+          {data.map((row) => renderRow ? renderRow(row) : defaultRenderRow(row))}
         </tbody>
       </table>
     </div>
