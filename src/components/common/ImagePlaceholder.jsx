@@ -26,14 +26,14 @@ export default function ImagePlaceholder({
   );
 }
 
-export function ResponsiveImage({ src, alt, label, aspectRatio = '16/9', className, rounded = false, ...props }) {
+export function ResponsiveImage({ src, alt, label, aspectRatio = '16/9', className, rounded = false, loading = 'lazy', ...props }) {
   if (!src) {
     return <ImagePlaceholder label={label || alt || 'Image placeholder'} aspectRatio={aspectRatio} className={className} rounded={rounded} />;
   }
 
   return (
     <div className={cn('responsive-image', rounded && 'responsive-image--rounded', className)} style={{ aspectRatio }}>
-      <img src={src} alt={alt} loading="lazy" className="responsive-image__img" {...props} />
+      <img src={src} alt={alt} loading={loading} className="responsive-image__img" {...props} />
     </div>
   );
 }

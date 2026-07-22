@@ -2,13 +2,13 @@ import { Link } from 'react-router-dom';
 import { ResponsiveImage } from '@/components/common/ImagePlaceholder';
 import './ServiceCard.css';
 
-export default function ServiceCard({ service, variant = 'default' }) {
+export default function ServiceCard({ service, variant = 'default', loading = 'lazy' }) {
   const { id, title, shortDescription, image, imageLabel, aspectRatio } = service;
 
   return (
     <article className={`service-card service-card--${variant}`}>
       <Link to={`/services#${id}`} className="service-card__image-link">
-        <ResponsiveImage src={image} alt={title} label={imageLabel} aspectRatio={aspectRatio || '16/10'} rounded />
+        <ResponsiveImage src={image} alt={title} label={imageLabel} aspectRatio={aspectRatio || '16/10'} rounded loading={loading} />
       </Link>
       <div className="service-card__body">
         <h3 className="service-card__title">

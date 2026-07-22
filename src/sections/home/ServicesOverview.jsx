@@ -90,7 +90,7 @@ export default function ServicesOverview() {
               data-index={index}
               style={{ '--card-scroll-progress': `${progresses[index]}` }}
             >
-              <ServiceCard service={service} />
+              <ServiceCard service={service} loading={index < 2 ? 'eager' : 'lazy'} />
             </div>
           ))}
         </div>
