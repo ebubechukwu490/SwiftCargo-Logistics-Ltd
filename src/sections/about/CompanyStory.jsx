@@ -1,7 +1,7 @@
 import Container from '@/components/layout/Container';
 import SectionHeading from '@/components/common/SectionHeading';
 import { COMPANY_INFO } from '@/constants/companyInfo';
-import teamFleetImage from '@/assets/team-fleet.jpg';
+import teamFleetImage from '@/assets/team-fleet.webp';
 import './CompanyStory.css';
 
 export default function CompanyStory() {

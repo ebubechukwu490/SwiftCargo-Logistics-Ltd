@@ -1,5 +1,5 @@
-import interstateCargoImg from '@/assets/interstate_cargo_transport.png';
-import warehousingImg from '@/assets/warehousing_storage.png';
+import interstateCargoImg from '@/assets/interstate_cargo_transport.webp';
+import warehousingImg from '@/assets/warehousing_storage.webp';
 import lastMileImg from '@/assets/last_mile_delivery.svg';
 import customLogisticsImg from '@/assets/custom_logistics.svg';
 

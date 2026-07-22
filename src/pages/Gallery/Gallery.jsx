@@ -3,11 +3,11 @@ import SEOHead from '@/components/common/SEOHead';
 import Container from '@/components/layout/Container';
 import Breadcrumb from '@/components/ui/Breadcrumb';
 import { ResponsiveImage } from '@/components/common/ImagePlaceholder';
-import advancedWarehouseBg from '@/assets/advanced_warehouse_bg.png';
-import cleanWarehouseBg from '@/assets/clean_warehouse_bg.png';
-import fleetOperationsHero from '@/assets/fleet_operations_hero.png';
-import interstateCargoTransport from '@/assets/interstate_cargo_transport.png';
-import warehousingStorage from '@/assets/warehousing_storage.png';
+import advancedWarehouseBg from '@/assets/advanced_warehouse_bg.webp';
+import cleanWarehouseBg from '@/assets/clean_warehouse_bg.webp';
+import fleetOperationsHero from '@/assets/fleet_operations_hero.webp';
+import interstateCargoTransport from '@/assets/interstate_cargo_transport.webp';
+import warehousingStorage from '@/assets/warehousing_storage.webp';
 import logoPng from '@/assets/logo.png';
 import './Gallery.css';
 
