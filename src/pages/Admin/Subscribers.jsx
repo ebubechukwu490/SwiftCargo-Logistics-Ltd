@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import DataTable from '@/components/dashboard/DataTable';
 import './AdminPages.css';
 
 export default function Subscribers() {
@@ -65,16 +64,9 @@ export default function Subscribers() {
   };
 
   const statusColors = {
-    active: '#10b981',
-    unsubscribed: '#ef4444',
+    active: { bg: '#d1fae5', text: '#065f46' },
+    unsubscribed: { bg: '#fee2e2', text: '#991b1b' },
   };
-
-  const columns = [
-    { key: 'email', label: 'Email Address' },
-    { key: 'subscribedDate', label: 'Subscribed Date' },
-    { key: 'status', label: 'Status' },
-    { key: 'actions', label: 'Actions' },
-  ];
 
   if (loading) return <div className="admin-page">Loading...</div>;
 
@@ -100,36 +92,45 @@ export default function Subscribers() {
         </div>
       </div>
 
-      <div className="admin-page__table-section">
-        <DataTable
-          columns={columns}
-          data={subscribers}
-          renderRow={(subscriber) => (
-            <>
-              <td className="font-semibold">{subscriber.email}</td>
-              <td>{subscriber.subscribedDate}</td>
-              <td>
-                <select
-                  value={subscriber.status}
-                  onChange={(e) => handleStatusUpdate(subscriber.id, e.target.value)}
-                  className="admin-page__status-select"
-                  style={{ color: statusColors[subscriber.status] }}
-                >
-                  <option value="active">Active</option>
-                  <option value="unsubscribed">Unsubscribed</option>
-                </select>
-              </td>
-              <td>
-                <button
-                  onClick={() => handleDelete(subscriber.id)}
-                  className="admin-page__delete-btn"
-                >
-                  Delete
-                </button>
-              </td>
-            </>
-          )}
-        />
+      <div className="admin-page__cards-grid">
+        {subscribers.map((subscriber) => (
+          <div key={subscriber.id} className="admin-card">
+            <div className="admin-card__header">
+              <div>
+                <div className="admin-card__title">{subscriber.email}</div>
+                <div className="admin-card__subtitle">Subscriber</div>
+              </div>
+              <span
+                className="admin-card__status"
+                style={{ backgroundColor: statusColors[subscriber.status].bg, color: statusColors[subscriber.status].text }}
+              >
+                {subscriber.status}
+              </span>
+            </div>
+            <div className="admin-card__body">
+              <div className="admin-card__field">
+                <span className="admin-card__label">Subscribed Date</span>
+                <span className="admin-card__value">{subscriber.subscribedDate}</span>
+              </div>
+            </div>
+            <div className="admin-card__actions">
+              <select
+                value={subscriber.status}
+                onChange={(e) => handleStatusUpdate(subscriber.id, e.target.value)}
+                className="admin-page__status-select"
+              >
+                <option value="active">Active</option>
+                <option value="unsubscribed">Unsubscribed</option>
+              </select>
+              <button
+                onClick={() => handleDelete(subscriber.id)}
+                className="admin-card__btn admin-card__btn--danger"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

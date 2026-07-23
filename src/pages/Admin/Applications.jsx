@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import DataTable from '@/components/dashboard/DataTable';
 import './AdminPages.css';
 
 export default function Applications() {
@@ -70,20 +69,12 @@ export default function Applications() {
   const filteredApplications = filter === 'all' ? applications : applications.filter((a) => a.status === filter);
 
   const statusColors = {
-    pending: '#f59e0b',
-    reviewed: '#3b82f6',
-    interviewed: '#8b5cf6',
-    rejected: '#ef4444',
-    hired: '#10b981',
+    pending: { bg: '#fef3c7', text: '#92400e' },
+    reviewed: { bg: '#dbeafe', text: '#1e40af' },
+    interviewed: { bg: '#ede9fe', text: '#5b21b6' },
+    rejected: { bg: '#fee2e2', text: '#991b1b' },
+    hired: { bg: '#d1fae5', text: '#065f46' },
   };
-
-  const columns = [
-    { key: 'name', label: 'Applicant' },
-    { key: 'position', label: 'Position' },
-    { key: 'experience', label: 'Experience' },
-    { key: 'appliedDate', label: 'Applied Date' },
-    { key: 'status', label: 'Status' },
-  ];
 
   if (loading) return <div className="admin-page">Loading...</div>;
 
@@ -146,39 +137,58 @@ export default function Applications() {
         </button>
       </div>
 
-      <div className="admin-page__table-section">
-        <DataTable
-          columns={columns}
-          data={filteredApplications}
-          renderRow={(app) => (
-            <>
-              <td>
-                <div>
-                  <div className="font-semibold">{app.name}</div>
-                  <div className="text-sm text-gray-500">{app.email}</div>
-                  <div className="text-sm text-gray-500">{app.phone}</div>
-                </div>
-              </td>
-              <td>{app.position}</td>
-              <td>{app.experience}</td>
-              <td>{app.appliedDate}</td>
-              <td>
-                <select
-                  value={app.status}
-                  onChange={(e) => handleStatusUpdate(app.id, e.target.value)}
-                  className="admin-page__status-select"
-                  style={{ color: statusColors[app.status] }}
-                >
-                  <option value="pending">Pending</option>
-                  <option value="reviewed">Reviewed</option>
-                  <option value="interviewed">Interviewed</option>
-                  <option value="hired">Hired</option>
-                  <option value="rejected">Rejected</option>
-                </select>
-              </td>
-            </>
-          )}
-        />
+      <div className="admin-page__cards-grid">
+        {filteredApplications.map((app) => (
+          <div key={app.id} className="admin-card">
+            <div className="admin-card__header">
+              <div>
+                <div className="admin-card__title">{app.name}</div>
+                <div className="admin-card__subtitle">{app.position}</div>
+              </div>
+              <span
+                className="admin-card__status"
+                style={{ backgroundColor: statusColors[app.status].bg, color: statusColors[app.status].text }}
+              >
+                {app.status.replace('_', ' ')}
+              </span>
+            </div>
+            <div className="admin-card__body">
+              <div className="admin-card__field">
+                <span className="admin-card__label">Email</span>
+                <span className="admin-card__value">{app.email}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Phone</span>
+                <span className="admin-card__value">{app.phone}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Experience</span>
+                <span className="admin-card__value">{app.experience}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Applied Date</span>
+                <span className="admin-card__value">{app.appliedDate}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Cover Letter</span>
+                <span className="admin-card__value">{app.coverLetter}</span>
+              </div>
+            </div>
+            <div className="admin-card__actions">
+              <select
+                value={app.status}
+                onChange={(e) => handleStatusUpdate(app.id, e.target.value)}
+                className="admin-page__status-select"
+              >
+                <option value="pending">Pending</option>
+                <option value="reviewed">Reviewed</option>
+                <option value="interviewed">Interviewed</option>
+                <option value="hired">Hired</option>
+                <option value="rejected">Rejected</option>
+              </select>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

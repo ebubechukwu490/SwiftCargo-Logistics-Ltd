@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import DataTable from '@/components/dashboard/DataTable';
 import './AdminPages.css';
 
 export default function Messages() {
@@ -67,18 +66,11 @@ export default function Messages() {
   const filteredMessages = filter === 'all' ? messages : messages.filter((m) => m.status === filter);
 
   const statusColors = {
-    unread: '#ef4444',
-    read: '#3b82f6',
-    replied: '#10b981',
-    archived: '#6b7280',
+    unread: { bg: '#fee2e2', text: '#991b1b' },
+    read: { bg: '#dbeafe', text: '#1e40af' },
+    replied: { bg: '#d1fae5', text: '#065f46' },
+    archived: { bg: '#f3f4f6', text: '#374151' },
   };
-
-  const columns = [
-    { key: 'name', label: 'Sender' },
-    { key: 'subject', label: 'Subject' },
-    { key: 'receivedDate', label: 'Date' },
-    { key: 'status', label: 'Status' },
-  ];
 
   if (loading) return <div className="admin-page">Loading...</div>;
 
@@ -135,40 +127,59 @@ export default function Messages() {
         </button>
       </div>
 
-      <div className="admin-page__table-section">
-        <DataTable
-          columns={columns}
-          data={filteredMessages}
-          renderRow={(msg) => (
-            <>
-              <td>
-                <div>
-                  <div className="font-semibold">{msg.name}</div>
-                  <div className="text-sm text-gray-500">{msg.email}</div>
-                  <div className="text-sm text-gray-500">{msg.phone}</div>
-                </div>
-              </td>
-              <td>
-                <div className="font-medium">{msg.subject}</div>
-                <div className="text-sm text-gray-500 truncate">{msg.message.substring(0, 50)}...</div>
-              </td>
-              <td>{msg.receivedDate}</td>
-              <td>
-                <select
-                  value={msg.status}
-                  onChange={(e) => handleStatusUpdate(msg.id, e.target.value)}
-                  className="admin-page__status-select"
-                  style={{ color: statusColors[msg.status] }}
-                >
-                  <option value="unread">Unread</option>
-                  <option value="read">Read</option>
-                  <option value="replied">Replied</option>
-                  <option value="archived">Archived</option>
-                </select>
-              </td>
-            </>
-          )}
-        />
+      <div className="admin-page__cards-grid">
+        {filteredMessages.map((msg) => (
+          <div key={msg.id} className="admin-card">
+            <div className="admin-card__header">
+              <div>
+                <div className="admin-card__title">{msg.subject}</div>
+                <div className="admin-card__subtitle">{msg.name}</div>
+              </div>
+              <span
+                className="admin-card__status"
+                style={{ backgroundColor: statusColors[msg.status].bg, color: statusColors[msg.status].text }}
+              >
+                {msg.status}
+              </span>
+            </div>
+            <div className="admin-card__body">
+              <div className="admin-card__field">
+                <span className="admin-card__label">Email</span>
+                <span className="admin-card__value">{msg.email}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Phone</span>
+                <span className="admin-card__value">{msg.phone}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Received Date</span>
+                <span className="admin-card__value">{msg.receivedDate}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Message</span>
+                <span className="admin-card__value">{msg.message}</span>
+              </div>
+            </div>
+            <div className="admin-card__actions">
+              <button
+                className="admin-card__btn admin-card__btn--primary"
+                onClick={() => setSelectedMessage(msg)}
+              >
+                View Details
+              </button>
+              <select
+                value={msg.status}
+                onChange={(e) => handleStatusUpdate(msg.id, e.target.value)}
+                className="admin-page__status-select"
+              >
+                <option value="unread">Unread</option>
+                <option value="read">Read</option>
+                <option value="replied">Replied</option>
+                <option value="archived">Archived</option>
+              </select>
+            </div>
+          </div>
+        ))}
       </div>
 
       {selectedMessage && (

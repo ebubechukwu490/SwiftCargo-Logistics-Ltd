@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import DataTable from '@/components/dashboard/DataTable';
 import { getAdminQuotes, updateQuoteStatus } from '@/services/api';
 import './AdminPages.css';
 
@@ -35,21 +34,11 @@ export default function Quotes() {
   const filteredQuotes = filter === 'all' ? quotes : quotes.filter((q) => q.status === filter);
 
   const statusColors = {
-    pending: '#f59e0b',
-    confirmed: '#10b981',
-    in_transit: '#3b82f6',
-    expired: '#ef4444',
+    pending: { bg: '#fef3c7', text: '#92400e' },
+    confirmed: { bg: '#d1fae5', text: '#065f46' },
+    in_transit: { bg: '#dbeafe', text: '#1e40af' },
+    expired: { bg: '#fee2e2', text: '#991b1b' },
   };
-
-  const columns = [
-    { key: 'trackingId', label: 'Tracking ID' },
-    { key: 'customerName', label: 'Customer' },
-    { key: 'pickup', label: 'Pickup' },
-    { key: 'delivery', label: 'Delivery' },
-    { key: 'cargoType', label: 'Cargo Type' },
-    { key: 'preferredDate', label: 'Preferred Date' },
-    { key: 'status', label: 'Status' },
-  ];
 
   if (loading) return <div className="admin-page">Loading...</div>;
 
@@ -93,39 +82,57 @@ export default function Quotes() {
         </button>
       </div>
 
-      <div className="admin-page__table-section">
-        <DataTable
-          columns={columns}
-          data={filteredQuotes}
-          renderRow={(quote) => (
-            <>
-              <td><strong>{quote.trackingId}</strong></td>
-              <td>
-                <div>
-                  <div className="font-semibold">{quote.customerName}</div>
-                  <div className="text-sm text-gray-500">{quote.phone}</div>
-                </div>
-              </td>
-              <td>{quote.pickup}</td>
-              <td>{quote.delivery}</td>
-              <td>{quote.cargoType}</td>
-              <td>{quote.preferredDate}</td>
-              <td>
-                <select
-                  value={quote.status}
-                  onChange={(e) => handleStatusUpdate(quote.id, e.target.value)}
-                  className="admin-page__status-select"
-                  style={{ color: statusColors[quote.status] }}
-                >
-                  <option value="pending">Pending</option>
-                  <option value="confirmed">Confirmed</option>
-                  <option value="in_transit">In Transit</option>
-                  <option value="expired">Expired</option>
-                </select>
-              </td>
-            </>
-          )}
-        />
+      <div className="admin-page__cards-grid">
+        {filteredQuotes.map((quote) => (
+          <div key={quote.id} className="admin-card">
+            <div className="admin-card__header">
+              <div>
+                <div className="admin-card__title">{quote.trackingId}</div>
+                <div className="admin-card__subtitle">{quote.customerName}</div>
+              </div>
+              <span
+                className="admin-card__status"
+                style={{ backgroundColor: statusColors[quote.status].bg, color: statusColors[quote.status].text }}
+              >
+                {quote.status.replace('_', ' ')}
+              </span>
+            </div>
+            <div className="admin-card__body">
+              <div className="admin-card__field">
+                <span className="admin-card__label">Phone</span>
+                <span className="admin-card__value">{quote.phone}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Pickup Location</span>
+                <span className="admin-card__value">{quote.pickup}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Delivery Location</span>
+                <span className="admin-card__value">{quote.delivery}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Cargo Type</span>
+                <span className="admin-card__value">{quote.cargoType}</span>
+              </div>
+              <div className="admin-card__field">
+                <span className="admin-card__label">Preferred Date</span>
+                <span className="admin-card__value">{quote.preferredDate}</span>
+              </div>
+            </div>
+            <div className="admin-card__actions">
+              <select
+                value={quote.status}
+                onChange={(e) => handleStatusUpdate(quote.id, e.target.value)}
+                className="admin-page__status-select"
+              >
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="in_transit">In Transit</option>
+                <option value="expired">Expired</option>
+              </select>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
