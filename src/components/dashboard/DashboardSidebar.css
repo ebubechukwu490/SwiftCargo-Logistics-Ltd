@@ -21,7 +21,17 @@
   font-weight: var(--font-weight-semibold);
 }
 
-.dashboard-sidebar__brand img { height: 28px; width: auto; filter: brightness(0) invert(1); }
+.dashboard-sidebar__logo {
+  height: 32px;
+  width: auto;
+  filter: brightness(0) invert(1);
+}
+
+.dashboard-sidebar__brand-text {
+  font-size: var(--text-body);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+}
 
 .dashboard-sidebar__nav {
   display: flex;

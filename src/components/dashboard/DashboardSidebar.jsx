@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { COMPANY_INFO } from '@/constants/companyInfo';
-import logoSrc from '@/assets/logo.png';
+import logoSrc from '@/assets/logo/logo.svg';
 import './DashboardSidebar.css';
 
 const NAV_ITEMS = [
@@ -29,8 +29,8 @@ export default function DashboardSidebar({ isOpen, onClose }) {
       {isOpen && <div className="dashboard-sidebar__scrim" onClick={onClose} aria-hidden="true" />}
       <aside className={`dashboard-sidebar ${isOpen ? 'dashboard-sidebar--open' : ''}`}>
         <div className="dashboard-sidebar__brand">
-          <img src={logoSrc} alt={COMPANY_INFO.name} style={{ borderRadius: '6px', objectFit: 'cover', height: '24px', width: '24px', marginRight: '8px' }} />
-          <span>Ops Dashboard</span>
+          <img src={logoSrc} alt={COMPANY_INFO.name} className="dashboard-sidebar__logo" />
+          <span className="dashboard-sidebar__brand-text">{COMPANY_INFO.name}</span>
         </div>
         <nav className="dashboard-sidebar__nav" aria-label="Dashboard navigation">
           {NAV_ITEMS.map((item) => (
