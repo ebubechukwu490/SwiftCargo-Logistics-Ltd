@@ -17,6 +17,12 @@ const Privacy = lazy(() => import('@/pages/Privacy/Privacy'));
 const Terms = lazy(() => import('@/pages/Terms/Terms'));
 const Login = lazy(() => import('@/pages/Login/Login'));
 const Dashboard = lazy(() => import('@/pages/Dashboard/Dashboard'));
+const Quotes = lazy(() => import('@/pages/Admin/Quotes'));
+const Applications = lazy(() => import('@/pages/Admin/Applications'));
+const Messages = lazy(() => import('@/pages/Admin/Messages'));
+const Subscribers = lazy(() => import('@/pages/Admin/Subscribers'));
+const Activity = lazy(() => import('@/pages/Admin/Activity'));
+const Settings = lazy(() => import('@/pages/Admin/Settings'));
 const NotFound = lazy(() => import('@/pages/NotFound/NotFound'));
 
 function PageLoader() {
@@ -47,8 +53,15 @@ export default function AppRoutes() {
           </Route>
 
           <Route path="/admin/login" element={<Login />} />
-          <Route path="/admin/dashboard" element={<AdminLayout />}>
+          <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="quotes" element={<Quotes />} />
+            <Route path="applications" element={<Applications />} />
+            <Route path="messages" element={<Messages />} />
+            <Route path="subscribers" element={<Subscribers />} />
+            <Route path="activity" element={<Activity />} />
+            <Route path="settings" element={<Settings />} />
           </Route>
 
           <Route path="*" element={<NotFound />} />
