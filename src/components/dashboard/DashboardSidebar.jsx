@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { COMPANY_INFO } from '@/constants/companyInfo';
-import logoSrc from '@/assets/logo/logo.svg';
+import logoSrc from '@/assets/logo.png';
 import './DashboardSidebar.css';
 
 const NAV_ITEMS = [

@@ -16,9 +16,24 @@
   text-align: center;
 }
 
-.login-page__logo {
-  height: 36px;
+.login-page__brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
   margin-bottom: var(--space-lg);
+}
+
+.login-page__logo {
+  height: 40px;
+  width: auto;
+}
+
+.login-page__brand-text {
+  font-size: var(--text-h4);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  line-height: 1.2;
 }
 
 .login-page__title {

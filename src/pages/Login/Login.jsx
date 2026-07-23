@@ -10,7 +10,7 @@ import { isRequired, isValidEmail, VALIDATION_MESSAGES } from '@/utils/validator
 import { adminLogin } from '@/services/api';
 import { useAuth } from '@/context/AuthContext';
 import { COMPANY_INFO } from '@/constants/companyInfo';
-import logoSrc from '@/assets/logo/logo.svg';
+import logoSrc from '@/assets/logo.png';
 import './Login.css';
 
 const rules = {
@@ -56,7 +56,10 @@ export default function Login() {
       <SEOHead page="login" />
       <Container narrow>
         <div className="login-page__card">
-          <img src={logoSrc} alt={COMPANY_INFO.name} className="login-page__logo" />
+          <div className="login-page__brand">
+            <img src={logoSrc} alt={COMPANY_INFO.name} className="login-page__logo" />
+            <span className="login-page__brand-text">{COMPANY_INFO.name}</span>
+          </div>
           <h1 className="login-page__title">Operations Login</h1>
           <p className="login-page__subtitle">Internal access for SwiftCargo Owner and Ops Manager accounts.</p>
           <form onSubmit={handleSubmit} noValidate>
