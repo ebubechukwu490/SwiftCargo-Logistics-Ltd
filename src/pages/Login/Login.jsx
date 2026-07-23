@@ -71,6 +71,7 @@ export default function Login() {
             <Button type="submit" variant="primary" fullWidth loading={loading}>Log In</Button>
             {error && <FormStatus type="error" message={error} />}
           </form>
+          <p className="login-page__hint">Backend integration pending. This feature has been fully prepared on the frontend and will become functional once the backend services are connected.</p>
         </div>
       </Container>
     </div>
