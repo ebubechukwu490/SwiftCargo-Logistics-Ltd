@@ -75,7 +75,15 @@ export async function subscribeNewsletter(email) {
 // Replace the temporary placeholder message with the actual server response.
 export async function adminLogin(credentials) {
   // return request('/admin/login', { method: 'POST', body: JSON.stringify(credentials) });
-  throw new Error('Backend integration pending. This feature has been fully prepared on the frontend and will become functional once the backend services are connected.');
+  // Temporary: Allow any login for development/testing
+  if (credentials.email && credentials.password) {
+    return {
+      success: true,
+      token: 'temp-jwt-token',
+      user: { name: 'Operations Manager', role: 'ops_manager', email: credentials.email },
+    };
+  }
+  throw new Error('Invalid credentials');
 }
 
 // TODO: Backend developer:
