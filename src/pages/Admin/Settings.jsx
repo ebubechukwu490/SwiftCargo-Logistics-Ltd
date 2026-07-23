@@ -1,15 +1,18 @@
 import { useState } from 'react';
+import { COMPANY_INFO } from '@/constants/companyInfo';
 import './AdminPages.css';
 
 export default function Settings() {
   const [settings, setSettings] = useState({
-    companyName: 'SwiftCargo Logistics Ltd',
-    email: 'info@swiftcargo.com',
-    phone: '+234 800 123 4567',
-    address: '123 Logistics Road, Ikeja, Lagos',
+    companyName: COMPANY_INFO.name,
+    tagline: COMPANY_INFO.tagline,
+    description: COMPANY_INFO.description,
+    email: COMPANY_INFO.email,
+    phone: COMPANY_INFO.phone.display,
+    address: COMPANY_INFO.address.full,
     autoReplyEnabled: true,
     autoReplyMessage: 'Thank you for contacting us. We will respond within 24 hours.',
-    notificationEmail: 'admin@swiftcargo.com',
+    notificationEmail: COMPANY_INFO.email,
     maintenanceMode: false,
   });
 
@@ -22,8 +25,7 @@ export default function Settings() {
   };
 
   const handleSave = () => {
-    // In production, this would save to backend
-    alert('Settings saved successfully!');
+    alert('⚠️ Settings saved successfully!\n\nNote: Changes will not reflect on the website yet because the backend has not been implemented. Once the backend is connected, your settings changes will take effect immediately.');
   };
 
   return (
@@ -45,6 +47,26 @@ export default function Settings() {
                 value={settings.companyName}
                 onChange={handleChange}
                 className="form-input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Tagline</label>
+              <input
+                type="text"
+                name="tagline"
+                value={settings.tagline}
+                onChange={handleChange}
+                className="form-input"
+              />
+            </div>
+            <div className="form-group">
+              <label>Description</label>
+              <textarea
+                name="description"
+                value={settings.description}
+                onChange={handleChange}
+                className="form-input"
+                rows={3}
               />
             </div>
             <div className="form-group">
